@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   initial_check.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/12/02 16:14:26 by ajurado-          #+#    #+#             */
+/*   Updated: 2023/12/02 16:14:29 by ajurado-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static  int ft_is_number(char *str)
@@ -22,10 +34,11 @@ static int ft_duplicates(char **argv)
     i = 0;
     while(argv[++i])
     {
-        j = 0;
+        j = i;
         while(argv[++j])
         {
-            if ()
+            if (ft_atoi(argv[i]) == ft_atoi(argv[j]))
+                return (1);
         }
     }
     return (0);
@@ -40,6 +53,8 @@ int ft_check_args(char **argv)
     {
         if(!ft_is_number(argv[i]))
             return (0);
-
     }
+    if (ft_duplicates(argv))
+        return (0);
+    return (1);
 }
