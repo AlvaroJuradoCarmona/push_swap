@@ -29,8 +29,8 @@ typedef struct s_stack
 
 int		ft_check_args(char **argv);
 void	ft_fill_values (t_list **a, int argc, char **argv);
-//void	ft_sort_two_nodes(t_list *stack);
-//void	ft_sort_three_nodes(t_list *stack);
+void	ft_sort_two_nodes(t_list *stack);
+void	ft_sort_three_nodes(t_list *stack);
 void	ft_rotate(t_list *stack, char option);
 void	ft_rotate_both(t_list *stack_a, t_list *stack_b);
 void	ft_reverse(t_list *stack, char option);
@@ -39,5 +39,7 @@ void	ft_swap(t_list *stack, char option);
 void	ft_swap_both(t_list *stack_a, t_list *stack_b);
 void	ft_push(t_list *org, t_list *dst, char dst_option);
 void	ft_assign_indexes(t_list **a, int argc);
+int		ft_is_sorted(t_list *a);
+void    ft_sort_large(t_list *a, t_list *b);
 
 #endif
