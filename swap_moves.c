@@ -38,7 +38,6 @@ void ft_swap_both(t_list *stack_a, t_list *stack_b)
 void ft_push(t_list *org, t_list *dst, char dst_option)
 {
 	t_list *first;
-	t_list *last;
 
 	if (!ft_lstsize(org))
 		return ;

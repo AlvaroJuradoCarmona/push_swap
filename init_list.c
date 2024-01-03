@@ -69,6 +69,5 @@ void	ft_assign_indexes(t_list **a, int argc)
 			aux = aux->next;
 		}
 		lowest->index = i;
-		aux = lowest
 	}
 }

@@ -16,8 +16,8 @@ int	ft_is_sorted(t_list *a)
 {
 	while (a->next != NULL)
 	{
-		if (a->content->value > a->next->content->value)
-			return (0);1
+		if (((t_stack*)a->content)->value > ((t_stack*)a->next->content)->value)
+			return (0);
 		a = a->next;
 	}
 	return (1);
@@ -25,12 +25,13 @@ int	ft_is_sorted(t_list *a)
 
 static void	ft_sorted_assign(t_list **a, t_list **b, int size)
 {
-	if (size == 2 && !ft_is_sorted(a))
-		ft_sort_two_nodes(a);
-	else if (size == 3)
-		ft_sort_three_nodes(a);
-	else if (size > 3 && !ft_is_sorted(a))
-		ft_sort_large(a, b);
+	if (size == 2 && !ft_is_sorted(*a))
+		ft_sort_two_nodes(*a);
+	else if (size == 3){
+		ft_sort_three_nodes(*a);
+		ft_putstr_fd("tre\n", 2);
+	}else if (size > 3 && !ft_is_sorted(*a))
+		ft_sort_large(*a, *b);
 }
 
 int	main(int argc, char **argv)
@@ -45,15 +46,11 @@ int	main(int argc, char **argv)
 	}
 	a = NULL;
 	b = NULL;
-
-	ft_fill_values(&a, argc, argv);	
+	
+	
+	ft_fill_values(&a, argc, argv);
 	ft_assign_indexes(&a, argc);
-	ft_sorted_assign(a, b, ft_lstsize(a));
-	while (a)
-	{
-		ft_putnbr_fd(((t_stack *) a->content)->index, 1);
-		ft_putendl_fd("", 1);
-		a = a->next;
-	}
+	ft_sorted_assign(&a, &b, ft_lstsize(a));
+
 	return (0);
 }

@@ -11,14 +11,13 @@ static void	ft_push_all_except_three(t_list *a, t_list *b)
 	i = 0;
 	while (size > 6 && i < size && pushed < size / 2)
 	{
-		if (a->content->index <= size / 2)
+		if (((t_stack*)a->content)->index <= size / 2)
 		{
             ft_push(a, b, 'b');
 			pushed++;
 		}
 		else
             ft_rotate(a, 'a');
-			do_ra(stack_a);
 		i++;
 	}
 	while (size - pushed > 3)
