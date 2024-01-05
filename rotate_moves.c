@@ -12,14 +12,14 @@
 
 #include "push_swap.h"
 
-void ft_rotate(t_list *stack, char option)
+void ft_rotate(t_list **stack, char option)
 {
 	t_list *aux;
 	t_list *last;
 
-	aux = stack;
-	stack = stack->next;
-	last = ft_lstlast(stack);
+	aux = (*stack);
+	*stack = (*stack)->next;
+	last = ft_lstlast((*stack));
 	aux->next = NULL;
 	last->next = aux;
 	if(option == 'a')
@@ -28,32 +28,32 @@ void ft_rotate(t_list *stack, char option)
 		ft_putendl_fd("rb", 1);
 }
 
-void ft_rotate_both(t_list *stack_a, t_list *stack_b)
+void ft_rotate_both(t_list **stack_a, t_list **stack_b)
 {
 	ft_rotate(stack_a, 'r');
 	ft_rotate(stack_b, 'r');
 	ft_putendl_fd("rr", 1);
 }
 
-void ft_reverse(t_list *stack, char option)
+void ft_reverse(t_list **stack, char option)
 {
 	t_list *aux;
 	t_list *last;
 
-	aux = stack;
-	last = ft_lstlast(stack);
+	aux = (*stack);
+	last = ft_lstlast((*stack));
 	while(aux->next->next != NULL)
 		aux = aux->next;
 	aux->next = NULL;
-	last->next = stack;
-	stack = last;
+	last->next = (*stack);
+	(*stack) = last;
 	if(option == 'a')
 		ft_putendl_fd("rra", 1);
 	else if (option == 'b')
 		ft_putendl_fd("rrb", 1);
 }
 
-void ft_reverse_both(t_list *stack_a, t_list *stack_b)
+void ft_reverse_both(t_list **stack_a, t_list **stack_b)
 {
 	ft_reverse(stack_a, 'r');
 	ft_reverse(stack_b, 'r');

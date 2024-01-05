@@ -15,7 +15,8 @@ CFLAGS		= -Wall -Wextra -Werror
 INCLUDES	= -I $(LIBFT)
 LIBFT		= libft
 LIBFT_A		= $(LIBFT)/libft.a
-SRCS		= push_swap.c initial_check.c init_list.c initial_cases.c rotate_moves.c swap_moves.c sort.c
+SRCS		= push_swap.c initial_check.c init_list.c initial_cases.c \
+		rotate_moves.c swap_moves.c sort.c calc_stack_params.c actions.c
 OBJS		= $(SRCS:.c=.o)
 RM			= rm -rf
 
