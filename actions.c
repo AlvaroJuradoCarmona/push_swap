@@ -1,5 +1,12 @@
 #include "push_swap.h"
 
+static int	ft_abs(int nbr)
+{
+	if (nbr < 0)
+		return (-nbr);
+	return (nbr);
+}
+
 static void	ft_reverse_loop(t_list **a, t_list **b)
 {
 	t_list	*aux_b;
@@ -38,7 +45,7 @@ void	ft_select_moves(t_list **a, t_list **b, t_stack *lowest)
 	if (s->cost_a < 0 && s->cost_b < 0)
 		ft_reverse_loop(a, b);
 	else if (s->cost_a > 0 && s->cost_b > 0)
-		ft_rotate_loop(a, b);
+		ft_rotate_loop(a, b);	
 	while (s->cost_a > 0)
 	{
 		ft_rotate(a, 'a');
@@ -59,9 +66,7 @@ void	ft_select_moves(t_list **a, t_list **b, t_stack *lowest)
 		ft_reverse(b, 'b');
 		s->cost_b++;
 	}
-
 	ft_push(b, a, 'a');
-
 }
 
 void	ft_do_move(t_list **a, t_list **b)
@@ -74,10 +79,10 @@ void	ft_do_move(t_list **a, t_list **b)
 	lowest_cost = INT_MAX;
 	while(aux_b)
 	{
-		if(((t_stack *)aux_b->content)->total_cost < lowest_cost)
+		if((ft_abs(((t_stack *)aux_b->content)->cost_a) + ft_abs(((t_stack *)aux_b->content)->cost_b)) < lowest_cost)
 		{
 			lowest = ((t_stack *)aux_b->content);
-			lowest_cost = ((t_stack *)aux_b->content)->total_cost;
+			lowest_cost = (ft_abs(((t_stack *)aux_b->content)->cost_a) + ft_abs(((t_stack *)aux_b->content)->cost_b));
 		}
 		aux_b = aux_b->next;
 	}	

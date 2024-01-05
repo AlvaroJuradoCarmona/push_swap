@@ -25,7 +25,6 @@ typedef struct s_stack
 	int	target_pos;
 	int	cost_a;
 	int	cost_b;
-	int	total_cost;
 }	t_stack;
 
 int		ft_check_args(char **argv);

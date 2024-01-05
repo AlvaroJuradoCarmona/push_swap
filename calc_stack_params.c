@@ -15,39 +15,48 @@ void	ft_get_pos(t_list **stack)
 	}
 }
 
-void	ft_get_target_pos(t_list **a, t_list **b)
+static int	get_target(t_list **a, int b_idx, int target_idx, int target_pos)
 {
 	t_list	*aux_a;
-	t_list	*aux_b;
-	int	target;
-	
-	aux_b = *b;
-	while(aux_b)
+
+	aux_a = *a;
+	while (aux_a)
 	{
-		target = 0;
-		aux_a = *a;
-		while(aux_a)
+		if (((t_stack *)aux_a->content)->index > b_idx && ((t_stack *)aux_a->content)->index < target_idx)
 		{
-			if(((t_stack *)aux_b->content)->value > ((t_stack *)aux_a->content)->value)
-			{
-				aux_a = aux_a->next;
-				target++;
-			}
-			else
-			{
-				((t_stack *)aux_b->content)->target_pos = target;
-				break ;
-			}
+			target_idx = ((t_stack *)aux_a->content)->index;
+			target_pos = ((t_stack *)aux_a->content)->pos;
 		}
-		aux_b = aux_b->next;
+		aux_a = aux_a->next;
 	}
+	if (target_idx != INT_MAX)
+		return (target_pos);
+	aux_a = *a;
+	while (aux_a)
+	{
+		if (((t_stack *)aux_a->content)->index < target_idx)
+		{
+			target_idx = ((t_stack *)aux_a->content)->index;
+			target_pos = ((t_stack *)aux_a->content)->pos;
+		}
+		aux_a = aux_a->next;
+	}
+	return (target_pos);
 }
 
-static int	ft_abs(int nbr)
+void	ft_get_target_pos(t_list **a, t_list **b)
 {
-	if (nbr < 0)
-		return (-nbr);
-	return (nbr);
+	t_list	*aux_b;
+	int	target_pos;
+	
+	aux_b = *b;
+	target_pos = 0;
+	while(aux_b)
+	{
+		target_pos = get_target(a, ((t_stack *)aux_b->content)->index, INT_MAX, target_pos);
+		((t_stack *)aux_b->content)->target_pos = target_pos;
+		aux_b = aux_b->next;
+	}
 }
 
 void	ft_cost_b(t_list **b)
@@ -74,16 +83,13 @@ void	ft_cost_a(t_list **a, t_list **b)
 	t_stack *s;
 	
 	aux_b = *b;
-	
 	size_a = ft_lstsize(*a);
 	while (aux_b)
 	{
-		s = ((t_stack *)aux_b->content);
-		if ((s->target_pos + 1) <= size_a / 2 + 1)
-			s->cost_a = s->target_pos;
-		else
-			s->cost_a = s->target_pos - size_a;
-		s->total_cost = ft_abs(s->cost_a) + ft_abs(s->cost_b);
+		s = ((t_stack *)aux_b->content);	
+		s->cost_a = s->target_pos;
+		if (s->target_pos > size_a / 2)
+			s->cost_a = (size_a - s->target_pos) * -1;
 		aux_b = aux_b->next;
 	}
 }

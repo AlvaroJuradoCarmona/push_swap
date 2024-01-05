@@ -73,7 +73,7 @@ static void	ft_adjust(t_list **a)
 }
 
 void    ft_sort_large(t_list **a, t_list **b)
-{
+{	
     ft_push_all_except_three(a, b);
     while (*b)
     {
