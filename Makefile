@@ -11,7 +11,7 @@
 # **************************************************************************** #
 
 NAME 		= push_swap
-CFLAGS		= -Wall -Wextra -Werror -g
+CFLAGS		= -Wall -Wextra -Werror
 INCLUDES	= -I $(LIBFT)
 LIBFT		= libft
 LIBFT_A		= $(LIBFT)/libft.a

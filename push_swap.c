@@ -6,7 +6,7 @@
 /*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:14:05 by ajurado-          #+#    #+#             */
-/*   Updated: 2023/12/10 19:44:29 by ajurado-         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:50:13 by ajurado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,12 @@
 
 int	ft_is_sorted(t_list *a)
 {
+	t_stack	*s;
+
 	while (a->next != NULL)
 	{
-		if (((t_stack*)a->content)->value > ((t_stack*)a->next->content)->value)
+		s = ((t_stack *)a->content);
+		if (s->value > ((t_stack *)a->next->content)->value)
 			return (0);
 		a = a->next;
 	}
@@ -25,14 +28,14 @@ int	ft_is_sorted(t_list *a)
 
 static void	ft_sorted_assign(t_list **a, t_list **b, int size)
 {
-	  if (ft_is_sorted(*a))
-	    return ;
-	  if (size == 2)
-	    ft_sort_two_nodes(&(*a));
-	  else if (size == 3)
-	    ft_sort_three_nodes(&(*a));
-	  else
-	    ft_sort_large(&(*a), &(*b));
+	if (ft_is_sorted(*a))
+		return ;
+	if (size == 2)
+		ft_sort_two_nodes(&(*a));
+	else if (size == 3)
+		ft_sort_three_nodes(&(*a));
+	else
+		ft_sort_large(&(*a), &(*b));
 }
 
 int	main(int argc, char **argv)

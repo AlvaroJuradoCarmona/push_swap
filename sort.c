@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/01/08 17:52:36 by ajurado-          #+#    #+#             */
+/*   Updated: 2024/01/08 18:06:26 by ajurado-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 static void	ft_push_all_except_three(t_list **a, t_list **b)
@@ -9,13 +21,13 @@ static void	ft_push_all_except_three(t_list **a, t_list **b)
 	pushed = 0;
 	while (pushed < size / 2)
 	{
-		if (((t_stack*)(*a)->content)->index <= size / 2)
+		if (((t_stack *)(*a)->content)->index <= size / 2)
 		{
-            		ft_push(a, b, 'b');
+			ft_push(a, b, 'b');
 			pushed++;
 		}
 		else
-            		ft_rotate(a, 'a');
+			ft_rotate(a, 'a');
 	}
 	while (size - pushed > 3)
 	{
@@ -23,6 +35,21 @@ static void	ft_push_all_except_three(t_list **a, t_list **b)
 		pushed++;
 	}
 	ft_sort_three_nodes(a);
+}
+
+void	ft_get_pos(t_list **stack)
+{
+	t_list	*aux;
+	int		i;
+
+	aux = *stack;
+	i = 0;
+	while (aux)
+	{
+		((t_stack *)aux->content)->pos = i;
+		i++;
+		aux = aux->next;
+	}
 }
 
 static int	ft_get_lowest_index(t_list **stack)
@@ -72,18 +99,18 @@ static void	ft_adjust(t_list **a)
 	}
 }
 
-void    ft_sort_large(t_list **a, t_list **b)
-{	
-    ft_push_all_except_three(a, b);
-    while (*b)
-    {
-    	ft_get_pos(a);
-	ft_get_pos(b);
-    	ft_get_target_pos(a, b);
-    	ft_cost_b(b);
-    	ft_cost_a(a, b);
-    	ft_do_move(a, b);
-    }
-    if (!ft_is_sorted(*a))
-    	ft_adjust(a);
+void	ft_sort_large(t_list **a, t_list **b)
+{
+	ft_push_all_except_three(a, b);
+	while (*b)
+	{
+		ft_get_pos(a);
+		ft_get_pos(b);
+		ft_get_target_pos(a, b);
+		ft_cost_b(b);
+		ft_cost_a(a, b);
+		ft_do_move(a, b);
+	}
+	if (!ft_is_sorted(*a))
+		ft_adjust(a);
 }

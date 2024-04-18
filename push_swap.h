@@ -6,7 +6,7 @@
 /*   By: ajurado- <ajurado-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/12/02 16:14:35 by ajurado-          #+#    #+#             */
-/*   Updated: 2023/12/10 19:10:02 by ajurado-         ###   ########.fr       */
+/*   Updated: 2024/01/08 17:50:52 by ajurado-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ typedef struct s_stack
 }	t_stack;
 
 int		ft_check_args(char **argv);
-void	ft_fill_values (t_list **a, int argc, char **argv);
+void	ft_fill_values(t_list **a, int argc, char **argv);
 void	ft_sort_two_nodes(t_list **stack);
 void	ft_sort_three_nodes(t_list **stack);
 void	ft_rotate(t_list **stack, char option);
@@ -40,7 +40,7 @@ void	ft_swap_both(t_list **stack_a, t_list **stack_b);
 void	ft_push(t_list **org, t_list **dst, char dst_option);
 void	ft_assign_indexes(t_list **a, int argc);
 int		ft_is_sorted(t_list *a);
-void    ft_sort_large(t_list **a, t_list **b);
+void	ft_sort_large(t_list **a, t_list **b);
 void	ft_get_pos(t_list **stack);
 void	ft_get_target_pos(t_list **a, t_list **b);
 void	ft_cost_b(t_list **b);
